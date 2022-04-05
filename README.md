@@ -6,4 +6,4 @@
 <p>The aim for this project is to improve my skills using JavaScript Objects, Prototypes and better understand their concepts.</p>
 
 <br>
-<p><strong>Live: </strong><a href="mattxmade.github.io/odin-library/index.html">Library app</a></p>
+<p><strong>Live: </strong><a href="https://mattxmade.github.io/odin-library/">Library app</a></p>
