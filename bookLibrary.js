@@ -1,6 +1,6 @@
 // create book constructor                        DONE
-// create array to store books
-// create function to add book to array
+// create array to store books                    DONE
+// create function to add book to array           DONE
 // create function that loops through book array
 // display each item as a card
 // add a "NEW BOOK" button that displays a form
@@ -31,6 +31,17 @@ function Book(title, author, pages, read) {
   }
 }
 
-const AGOT = new Book('A Game Of Thrones', 'George R.R. Martin', 694, false);
+function addBookToLibrary(...Objects) {
+  for(Object of Objects) {
+    myLibrary.push(Object);
+  }
+}
+
+const AGOT = new Book('A Game Of Thrones', 'George R.R. Martin', 694, true);
+const ACOK = new Book('A Clash Of Kings', 'George R.R. Martin', 761, false);
 
 console.log(AGOT.info());
+console.log(ACOK.info());
+
+addBookToLibrary(AGOT, ACOK);
+console.table(myLibrary);
