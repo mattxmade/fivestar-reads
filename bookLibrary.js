@@ -1,7 +1,7 @@
 // create book constructor                        DONE
 // create array to store books                    DONE
 // create function to add book to array           DONE
-// create function that loops through book array
+// create function that loops through book array  
 // display each item as a card
 // add a "NEW BOOK" button that displays a form
   // inputs:
@@ -31,9 +31,34 @@ function Book(title, author, pages, read) {
   }
 }
 
-function addBookToLibrary(...Objects) {
-  for(Object of Objects) {
-    myLibrary.push(Object);
+function addBookToLibrary(...objects) {
+  for(object of objects) {
+    myLibrary.push(object);
+  }
+}
+
+function displayBook(array) {
+  for(item of array) {
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('books-card');
+
+    const bookTitle = document.createElement('h2');
+    const bookAuthor = document.createElement('h3');
+    const bookPages = document.createElement('p');
+    const bookRead = document.createElement('p');
+
+    bookTitle.textContent = item.title;
+    bookAuthor.textContent = item.author;
+    bookPages.textContent = item.pages;
+    bookRead.textContent = item.read;
+
+    bookCard.appendChild(bookTitle);
+    bookCard.appendChild(bookAuthor);
+    bookCard.appendChild(bookPages);
+    bookCard.appendChild(bookRead);
+
+    const mainContainer = document.querySelector('main');
+    mainContainer.appendChild(bookCard);
   }
 }
 
@@ -45,3 +70,5 @@ console.log(ACOK.info());
 
 addBookToLibrary(AGOT, ACOK);
 console.table(myLibrary);
+
+displayBook(myLibrary);
