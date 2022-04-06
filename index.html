@@ -9,11 +9,73 @@
 </head>
 <body>
 
-<div class="wrapper">
-  <main>
-    
-  </main>
-</div>
+  <button id="js-form-button" class="form-button" type="menu">Add new book</button>
+
+  <div class="wrapper">
+    <main>
+      
+    </main>
+  </div>
+
+  <dialog class="modal" id="js-modal">
+    <form action="" method="">
+      <fieldset>
+        <legend>Add a new book</legend>
+        <ul>
+          <li>
+            <label for="title">Title</label>
+            <input name="title" type="text" required>
+          </li>
+
+          <li>
+            <label for="author">Author</label>
+            <input name="author" type="text" required>
+          </li>
+
+          <li>
+            <label for="genre">Genre</label>
+            <select name="genre" required>
+              <option value="">--Please select a genre--</option> -->
+              <option value="horror">Horror</option>
+              <option value="comedy">Comedy</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="romance">Romance</option>
+              <option value="historical">Historical</option>
+              <option value="biography">Biography</option>
+              <option value="sci-fi">Science-Fiction</option>
+              <option value="crime-mystery">Crime & Mystery</option>
+              <option value="action-adventure">Action & Adventure</option>
+            </select>
+          </li>
+
+          <li>
+            <label for="pages">Pages</label>
+            <input name="pages" type="number" required>
+          </li>
+
+          <li>
+            <label for="blurb">Description</label>
+            <textarea name="blurb" required>
+
+            </textarea>
+          </li>
+
+          <li>
+            <label for="status">Have you read this book?</label>
+            <input type="radio" name="status" required>
+          </li>
+
+          <li>
+            <input type="submit">
+          </li>
+        </ul>
+      </fieldset>
+    </form>
+
+    <button id="js-cancel-button" class="cancel-button">Cancel</button>
+  </dialog>
+
+
   
 </body>
 <script src="bookLibrary.js"></script>
