@@ -72,3 +72,17 @@ addBookToLibrary(AGOT, ACOK);
 console.table(myLibrary);
 
 displayBook(myLibrary);
+
+const formModal = document.querySelector('#js-modal');
+const formButton = document.querySelector('#js-form-button');
+const cancelButton = document.querySelector('#js-cancel-button');
+
+formButton.addEventListener('click', showForm);
+cancelButton.addEventListener('click', hideForm);
+
+function showForm(e) {
+  formModal.showModal();
+}
+function hideForm(e) {
+  formModal.close();
+}
