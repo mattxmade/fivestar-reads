@@ -24,55 +24,66 @@
         <ul>
           <li>
             <label for="title">Title</label>
-            <input name="title" type="text" required>
+            <input id="js-title" name="title" type="text" required>
           </li>
 
           <li>
             <label for="author">Author</label>
-            <input name="author" type="text" required>
+            <input id="js-author" name="author" type="text" required>
           </li>
 
           <li>
             <label for="genre">Genre</label>
-            <select name="genre" required>
+            <select id="js-select" name="genre">
               <option value="">--Please select a genre--</option> -->
-              <option value="horror">Horror</option>
-              <option value="comedy">Comedy</option>
-              <option value="fantasy">Fantasy</option>
-              <option value="romance">Romance</option>
-              <option value="historical">Historical</option>
-              <option value="biography">Biography</option>
-              <option value="sci-fi">Science-Fiction</option>
-              <option value="crime-mystery">Crime & Mystery</option>
-              <option value="action-adventure">Action & Adventure</option>
+              <option value="Horror">Horror</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Romance">Romance</option>
+              <option value="Historical">Historical</option>
+              <option value="Biography">Biography</option>
+              <option value="Sci-fi">Science-Fiction</option>
+              <option value="Crime-mystery">Crime & Mystery</option>
+              <option value="Action-adventure">Action & Adventure</option>
             </select>
           </li>
 
-          <li>
-            <label for="pages">Pages</label>
-            <input name="pages" type="number" required>
+          <li class="form-row-4">
+            <div>
+              <label for="year">Year</label>
+              <input id="js-year" type="number" name="year">
+            </div>
+            <div>
+              <label for="pages">Pages</label>
+              <input id="js-pages" name="pages" type="number">
+            </div>
           </li>
 
           <li>
             <label for="blurb">Description</label>
-            <textarea name="blurb" required>
+            <textarea id="js-blurb" name="blurb">
 
             </textarea>
           </li>
 
           <li>
-            <label for="status">Have you read this book?</label>
-            <input type="radio" name="status" required>
+            <p>Have you read this book?</p>
+            
+            <label for="status">Yes</label>
+            <input name="status" type="radio" value="read">
+
+            <label for="status">No</label>
+            <input name="status"type="radio" value="unread">
           </li>
 
           <li>
-            <input type="submit">
+            <button type="submit">Add</button>
           </li>
         </ul>
       </fieldset>
     </form>
 
-    <button id="js-cancel-button" class="cancel-button">Cancel</button>
+    <button id="js-back-button" class="back-button">Back</button>
   </dialog>
 
 
