@@ -19,15 +19,18 @@
   // function of book - read / unread
 
 let myLibrary = [];
+const buttons = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, genre, year, pages, read) {
   this.title = title;
   this.author = author;
+  this.genre = genre;
+  this.year = year;
   this.pages = pages;
   this.read = read;
 
   this.info = function() {
-    return `${title} by ${author}, ${pages} pages, ${read}`;
+    return `${title} by ${author}, year: ${year}, genre: ${genre} ${pages} pages, ${read}`;
   }
 }
 
@@ -37,52 +40,115 @@ function addBookToLibrary(...objects) {
   }
 }
 
-function displayBook(array) {
-  for(item of array) {
-    const bookCard = document.createElement('div');
-    bookCard.classList.add('books-card');
+// function removeBook() 
 
-    const bookTitle = document.createElement('h2');
-    const bookAuthor = document.createElement('h3');
-    const bookPages = document.createElement('p');
-    const bookRead = document.createElement('p');
+const mainContainer = document.querySelector('main');
 
-    bookTitle.textContent = item.title;
-    bookAuthor.textContent = item.author;
-    bookPages.textContent = item.pages;
-    bookRead.textContent = item.read;
+function displayBook(book) {
 
-    bookCard.appendChild(bookTitle);
-    bookCard.appendChild(bookAuthor);
-    bookCard.appendChild(bookPages);
-    bookCard.appendChild(bookRead);
+  const bookCard = document.createElement('div');
+  bookCard.classList.add('books-card');
 
-    const mainContainer = document.querySelector('main');
-    mainContainer.appendChild(bookCard);
+  const bookTitle  = document.createElement('h2');
+  const bookAuthor = document.createElement('h3');
+  const bookGenre  = document.createElement('h4');
+  const bookYear   = document.createElement('p');
+  const bookPages  = document.createElement('p');
+  const bookRead   = document.createElement('p');
+
+  const bookRemove = document.createElement('button');
+
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = book.author;
+  bookGenre.textContent = book.genre;
+  bookYear.textContent = book.year;
+  bookPages.textContent = book.pages;
+  bookRead.textContent = book.read;
+  bookRemove.textContent = 'remove';
+
+  bookCard.appendChild(bookTitle);
+  bookCard.appendChild(bookAuthor);
+  bookCard.appendChild(bookGenre);
+  bookCard.appendChild(bookYear);
+  bookCard.appendChild(bookPages);
+  bookCard.appendChild(bookRead);
+  bookCard.appendChild(bookRemove);
+
+  mainContainer.appendChild(bookCard);
+  bookCard.classList.add(setCardStyle(book.genre));
+
+  console.dir(mainContainer.childNodes);
+
+  bookRemove.addEventListener('click', () => {
+    mainContainer.removeChild(bookCard);
+    
+    // myLibrary.splice(index, index+1);
+  });
+
+}
+
+function setCardStyle(property) {
+  switch(property) {
+    case 'Fantasy':
+      return 'book-fantasy';
+    default:
+      return 'book-comedy';
   }
 }
 
-const AGOT = new Book('A Game Of Thrones', 'George R.R. Martin', 694, true);
-const ACOK = new Book('A Clash Of Kings', 'George R.R. Martin', 761, false);
-
-console.log(AGOT.info());
-console.log(ACOK.info());
-
-addBookToLibrary(AGOT, ACOK);
-console.table(myLibrary);
-
-displayBook(myLibrary);
-
-const formModal = document.querySelector('#js-modal');
+const modal = document.querySelector('#js-modal');
 const formButton = document.querySelector('#js-form-button');
-const cancelButton = document.querySelector('#js-cancel-button');
+const backButton = document.querySelector('#js-back-button');
 
 formButton.addEventListener('click', showForm);
-cancelButton.addEventListener('click', hideForm);
+backButton.addEventListener('click', hideForm);
 
 function showForm(e) {
-  formModal.showModal();
+  modal.showModal();
 }
 function hideForm(e) {
-  formModal.close();
+  modal.close();
 }
+
+const form = document.querySelector('form');
+const inputs = form.elements;
+
+form.addEventListener(('submit'), (e) => {
+  e.preventDefault();
+
+  let selectGenre;
+
+  const options = document.querySelector('select');
+  for ( option of options.selectedOptions ) {
+    selectGenre = option.attributes.value.nodeValue
+    // console.log(genre);
+  }
+
+  const title  = inputs["title"].value;
+  const author = inputs["author"].value;
+  const year   = inputs["year"].value;
+  const genre  = selectGenre;
+  const pages  = inputs["pages"].value;
+  const blurb  = inputs["blurb"].value;
+  const status = inputs["status"].value;
+
+  console.table({
+    title, author, year, genre, pages, blurb, status
+  });
+
+  const userBook = new Book(title, author, genre, year, pages, status);
+  console.log(userBook.info());
+  
+  addBookToLibrary(userBook);
+  console.table(myLibrary);
+
+  displayBook(userBook);
+
+});
+
+const AGOT = new Book(
+  'A Game Of Thrones', 'George R.R. Martin', "Fantasy", 1996, 694, "read" );
+
+addBookToLibrary(AGOT);
+displayBook(AGOT);
+
