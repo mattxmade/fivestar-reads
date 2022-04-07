@@ -30,7 +30,12 @@ main {
 .books-card {
   padding: 1rem;
   border-radius: 0.5rem;
+}
+.book-fantasy {
   background-color: pink;
+}
+.book-comedy {
+  background-color: yellow;
 }
 
 dialog {
@@ -77,6 +82,18 @@ form li {
   grid-template-columns: 0.15fr 1fr;  
 }
 
+form .form-row-4 {
+  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.form-row-4 div {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 0.15fr 1fr;
+}
+
 form li:nth-child(5) {
   justify-self: start;
 
@@ -109,4 +126,6 @@ textarea {
 
   padding: 1rem;
   text-align: left;
+  
+  resize: vertical;
 }
