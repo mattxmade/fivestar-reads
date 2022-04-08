@@ -44,7 +44,7 @@ function addBookToLibrary(...objects) {
 
 const mainContainer = document.querySelector('main');
 
-function displayBook(book) {
+function displayBook(book, index) {
 
   const bookCard = document.createElement('div');
   bookCard.classList.add('books-card');
@@ -82,7 +82,7 @@ function displayBook(book) {
   bookRemove.addEventListener('click', () => {
     mainContainer.removeChild(bookCard);
     
-    // myLibrary.splice(index, index+1);
+    myLibrary.splice(index, index+1);
   });
 
 }
@@ -142,7 +142,7 @@ form.addEventListener(('submit'), (e) => {
   addBookToLibrary(userBook);
   console.table(myLibrary);
 
-  displayBook(userBook);
+  displayBook(myLibrary[myLibrary.length - 1], myLibrary.length - 1);
 
 });
 
@@ -150,5 +150,5 @@ const AGOT = new Book(
   'A Game Of Thrones', 'George R.R. Martin', "Fantasy", 1996, 694, "read" );
 
 addBookToLibrary(AGOT);
-displayBook(AGOT);
+displayBook(myLibrary[myLibrary.length - 1], myLibrary.length - 1);
 
