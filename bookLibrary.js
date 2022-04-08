@@ -74,7 +74,11 @@ function displayBook(book, index) {
   bookCard.appendChild(bookRead);
   bookCard.appendChild(bookRemove);
 
-  mainContainer.appendChild(bookCard);
+  //mainContainer.appendChild(bookCard);
+  
+  const firstNode = document.querySelector('.placeholder');
+  mainContainer.insertBefore(bookCard, firstNode)
+
   bookCard.classList.add(setCardStyle(book.genre));
 
   console.dir(mainContainer.childNodes);
