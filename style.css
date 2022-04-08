@@ -20,20 +20,50 @@ ul {
   list-style: none;
 }
 
-main {
-  gap: 1rem;
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.books-card {
-  padding: 1rem;
+main {
+  gap: 4.5rem;
+  padding: 4.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1080px) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 880px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 620px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.books-card,
+.placeholder {
+  padding: 2rem;
+  min-height: 35rem;
   border-radius: 0.5rem;
 }
+
+.placeholder {
+  outline: 0.1rem dashed lightgray;
+}
+
 .book-fantasy {
   background-color: pink;
 }
+
 .book-comedy {
   background-color: yellow;
 }
@@ -41,12 +71,9 @@ main {
 dialog {
   margin: auto;
   position: absolute;
-
   padding: 4rem;
-
   width: 90%;
   height: 90%;
-
   max-width: 120rem;
   max-height: 200rem;
 }
@@ -76,10 +103,9 @@ form input[type=number] {
 form li {
   width: 100%;
   justify-self: start;
-
   display: grid;
   align-items: center;
-  grid-template-columns: 0.15fr 1fr;  
+  grid-template-columns: 0.15fr 1fr;
 }
 
 form .form-row-4 {
@@ -96,14 +122,12 @@ form .form-row-4 {
 
 form li:nth-child(5) {
   justify-self: start;
-
   display: flex;
   flex-direction: column;
 }
 
 form li:nth-child(6) {
   justify-self: start;
-
   display: flex;
   gap: 1rem;
 }
@@ -123,9 +147,7 @@ legend {
 textarea {
   width: 95%;
   height: 15rem;
-
   padding: 1rem;
   text-align: left;
-  
   resize: vertical;
-}
+}/*# sourceMappingURL=style.css.map */
