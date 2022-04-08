@@ -46,6 +46,7 @@ const mainContainer = document.querySelector('main');
 
 function displayBook(book, index) {
 
+  const interior = document.createElement('div');
   const bookCard = document.createElement('div');
   bookCard.classList.add('books-card');
 
@@ -69,6 +70,20 @@ function displayBook(book, index) {
   bookCard.appendChild(bookTitle);
   bookCard.appendChild(bookAuthor);
   bookCard.appendChild(bookGenre);
+
+  const ratingHolder = document.createElement('div');
+  ratingHolder.classList.add('star-rating');
+
+  for (let i = 0; i < 5; i++) {
+    const starRating = document.createElement('i');
+    starRating.classList.add('far');
+    starRating.classList.add('fa-star');
+
+    ratingHolder.appendChild(starRating);
+  }
+
+  bookCard.appendChild(ratingHolder);
+
   bookCard.appendChild(bookYear);
   bookCard.appendChild(bookPages);
   bookCard.appendChild(bookRead);
@@ -77,11 +92,11 @@ function displayBook(book, index) {
   //mainContainer.appendChild(bookCard);
   
   const firstNode = document.querySelector('.placeholder');
-  mainContainer.insertBefore(bookCard, firstNode)
+  mainContainer.insertBefore(bookCard, firstNode);
+  bookCard.appendChild(interior);
 
   bookCard.classList.add(setCardStyle(book.genre));
-
-  console.dir(mainContainer.childNodes);
+  interior.classList.add('book-card-bg');
 
   bookRemove.addEventListener('click', () => {
     mainContainer.removeChild(bookCard);
@@ -89,14 +104,132 @@ function displayBook(book, index) {
     myLibrary.splice(index, index+1);
   });
 
+  const stars = document.querySelectorAll('.fa-star');
+
+  stars.forEach((star, index) => {
+    star.addEventListener('click', (e) => {
+
+      switch(index) {
+        case 0:
+          star.classList.toggle('far');
+          star.classList.toggle('fas');
+
+          stars[1].classList.add('far');
+          stars[1].classList.remove('fas');
+
+          stars[2].classList.add('far');
+          stars[2].classList.remove('fas');
+
+          stars[3].classList.add('far');
+          stars[3].classList.remove('fas');
+
+          stars[4].classList.add('far');
+          stars[4].classList.remove('fas');
+          break;
+
+        case 1:
+          star.classList.toggle('far');
+          star.classList.toggle('fas');
+
+          stars[0].classList.remove('far');
+          stars[0].classList.add('fas');
+
+          stars[2].classList.add('far');
+          stars[2].classList.remove('fas');
+
+          stars[3].classList.add('far');
+          stars[3].classList.remove('fas');
+
+          stars[4].classList.add('far');
+          stars[4].classList.remove('fas');
+          break;
+
+          case 2:
+            star.classList.toggle('far');
+            star.classList.toggle('fas');
+  
+            stars[0].classList.remove('far');
+            stars[0].classList.add('fas');
+  
+            stars[1].classList.remove('far');
+            stars[1].classList.add('fas');
+  
+            stars[3].classList.add('far');
+            stars[3].classList.remove('fas');
+  
+            stars[4].classList.add('far');
+            stars[4].classList.remove('fas');
+            break;
+
+          case 3:
+            star.classList.toggle('far');
+            star.classList.toggle('fas');
+  
+            stars[0].classList.remove('far');
+            stars[0].classList.add('fas');
+  
+            stars[1].classList.remove('far');
+            stars[1].classList.add('fas');
+  
+            stars[2].classList.remove('far');
+            stars[2].classList.add('fas');
+  
+            stars[4].classList.add('far');
+            stars[4].classList.remove('fas');
+            break;
+
+          case 4:
+            star.classList.toggle('far');
+            star.classList.toggle('fas');
+  
+            stars[0].classList.remove('far');
+            stars[0].classList.add('fas');
+  
+            stars[1].classList.remove('far');
+            stars[1].classList.add('fas');
+  
+            stars[2].classList.remove('far');
+            stars[2].classList.add('fas');
+  
+            stars[3].classList.remove('far');
+            stars[3].classList.add('fas');
+            break;
+      }
+
+
+    });
+  });
+
 }
 
 function setCardStyle(property) {
   switch(property) {
-    case 'Fantasy':
-      return 'book-fantasy';
-    default:
+    case 'Horror':
+      return 'book-horror';
+
+    case 'Comedy':
       return 'book-comedy';
+       
+    case 'Fantasy':
+      return 'book-fantasy'; 
+      
+    case 'Romance':
+      return 'book-romance';
+      
+    case 'Historical':
+      return 'book-historical';
+
+    case 'Biography':
+      return 'book-biography'; 
+      
+    case 'Sci-Fi':
+      return 'book-science-fiction';
+
+    case 'Crime-Mystery':
+      return 'book-crime-mystery';
+    
+    case 'Action-Adventure':
+      return 'book-action-adventure';
   }
 }
 
