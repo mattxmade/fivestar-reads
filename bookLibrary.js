@@ -21,16 +21,17 @@
 let myLibrary = [];
 const buttons = [];
 
-function Book(title, author, genre, year, pages, read) {
+function Book(title, author, genre, year, pages, read, rating = 0) {
   this.title = title;
   this.author = author;
   this.genre = genre;
   this.year = year;
   this.pages = pages;
   this.read = read;
+  this.rating = rating;
 
   this.info = function() {
-    return `${title} by ${author}, year: ${year}, genre: ${genre} ${pages} pages, ${read}`;
+    return `${title} by ${author}, year: ${year}, genre: ${genre} ${pages} pages, ${read}, rating: ${rating}`;
   }
 }
 
@@ -61,7 +62,12 @@ function displayBook(book, index) {
 
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
+
+  if (book.genre === '') {
+    book.genre = 'other';
+  }
   bookGenre.textContent = book.genre;
+  
   bookYear.textContent = book.year;
   bookPages.textContent = book.pages;
   bookRead.textContent = book.read;
@@ -78,6 +84,7 @@ function displayBook(book, index) {
     const starRating = document.createElement('i');
     starRating.classList.add('far');
     starRating.classList.add('fa-star');
+    starRating.classList.add(`set_${index}`);
 
     ratingHolder.appendChild(starRating);
   }
@@ -86,7 +93,25 @@ function displayBook(book, index) {
 
   bookCard.appendChild(bookYear);
   bookCard.appendChild(bookPages);
-  bookCard.appendChild(bookRead);
+
+  // read ?
+  const statusIcon = document.createElement('i');
+  statusIcon.classList.add('far');
+
+  if (book.read === 'read') {
+    statusIcon.classList.add('fa-check-square');
+  }
+  else {
+    statusIcon.classList.add('fa-sticky-note');
+  }
+  
+  // read status container
+  const readStatus = document.createElement('div');
+  readStatus.classList.add('status-box');
+  readStatus.appendChild(bookRead);
+  readStatus.appendChild(statusIcon);
+
+  bookCard.appendChild(readStatus);
   bookCard.appendChild(bookRemove);
 
   //mainContainer.appendChild(bookCard);
@@ -98,21 +123,103 @@ function displayBook(book, index) {
   bookCard.classList.add(setCardStyle(book.genre));
   interior.classList.add('book-card-bg');
 
+  // readStatus listener
+  statusIcon.addEventListener('click', () => {
+    statusIcon.classList.toggle('fa-check-square');
+    statusIcon.classList.toggle('fa-sticky-note');
+
+    if (statusIcon.classList.contains('fa-check-square')) {
+      book.read = 'read';
+    }
+    else {
+      book.read = 'unread';
+    }
+  });
+
+  // remove button listener
   bookRemove.addEventListener('click', () => {
     mainContainer.removeChild(bookCard);
     
     myLibrary.splice(index, index+1);
   });
 
-  const stars = document.querySelectorAll('.fa-star');
+  const stars = document.querySelectorAll(`.set_${index}`);
 
+  initRating(book, stars, book.rating);
+
+}
+
+function initRating(book, stars, lastRating) {
   stars.forEach((star, index) => {
+
+    switch(lastRating) {
+      case 1:
+        stars[0].classList.remove('far');
+        stars[0].classList.add('fas');
+        break;
+
+      case 2:
+        stars[0].classList.remove('far');
+        stars[0].classList.add('fas');
+        stars[1].classList.remove('far');
+        stars[1].classList.add('fas');
+        break;
+
+      case 3:
+        stars[0].classList.remove('far');
+        stars[0].classList.add('fas');
+        stars[1].classList.remove('far');
+        stars[1].classList.add('fas');
+        stars[2].classList.remove('far');
+        stars[2].classList.add('fas');
+        break;
+
+      case 4:
+        stars[0].classList.remove('far');
+        stars[0].classList.add('fas');
+        stars[1].classList.remove('far');
+        stars[1].classList.add('fas');
+        stars[2].classList.remove('far');
+        stars[2].classList.add('fas');
+        stars[3].classList.remove('far');
+        stars[3].classList.add('fas');
+        break;
+
+      case 5:
+        stars[0].classList.remove('far');
+        stars[0].classList.add('fas');
+        stars[1].classList.remove('far');
+        stars[1].classList.add('fas');
+        stars[2].classList.remove('far');
+        stars[2].classList.add('fas');
+        stars[3].classList.remove('far');
+        stars[3].classList.add('fas');
+        stars[4].classList.remove('far');
+        stars[4].classList.add('fas');
+        break;
+    }
+
     star.addEventListener('click', (e) => {
 
       switch(index) {
         case 0:
-          star.classList.toggle('far');
-          star.classList.toggle('fas');
+          console.log(`last rating: ${lastRating}`);
+
+          if (lastRating !== 1) {
+            star.classList.add('fas');
+            star.classList.remove('far');
+
+            lastRating = 1;
+          }
+
+          else {
+            star.classList.remove('fas');
+            star.classList.add('far');
+
+            lastRating = 0;
+          }
+
+          console.log(`current rating: ${lastRating}`);
 
           stars[1].classList.add('far');
           stars[1].classList.remove('fas');
@@ -128,8 +235,23 @@ function displayBook(book, index) {
           break;
 
         case 1:
-          star.classList.toggle('far');
-          star.classList.toggle('fas');
+          console.log(`last rating: ${lastRating}`);
+
+          if (lastRating < 2 || lastRating > 2) {
+            star.classList.add('fas');
+            star.classList.remove('far');
+
+            lastRating = 2;
+          }
+
+          else {
+            star.classList.remove('fas');
+            star.classList.add('far');
+
+            lastRating = 1;
+          }
+
+          console.log(`current rating: ${lastRating}`);
 
           stars[0].classList.remove('far');
           stars[0].classList.add('fas');
@@ -144,62 +266,105 @@ function displayBook(book, index) {
           stars[4].classList.remove('fas');
           break;
 
-          case 2:
-            star.classList.toggle('far');
-            star.classList.toggle('fas');
-  
-            stars[0].classList.remove('far');
-            stars[0].classList.add('fas');
-  
-            stars[1].classList.remove('far');
-            stars[1].classList.add('fas');
-  
-            stars[3].classList.add('far');
-            stars[3].classList.remove('fas');
-  
-            stars[4].classList.add('far');
-            stars[4].classList.remove('fas');
-            break;
+        case 2:
+          console.log(`last rating: ${lastRating}`);
 
-          case 3:
-            star.classList.toggle('far');
-            star.classList.toggle('fas');
-  
-            stars[0].classList.remove('far');
-            stars[0].classList.add('fas');
-  
-            stars[1].classList.remove('far');
-            stars[1].classList.add('fas');
-  
-            stars[2].classList.remove('far');
-            stars[2].classList.add('fas');
-  
-            stars[4].classList.add('far');
-            stars[4].classList.remove('fas');
-            break;
+          if (lastRating < 3 || lastRating > 3) {
+            star.classList.add('fas');
+            star.classList.remove('far');
 
-          case 4:
-            star.classList.toggle('far');
-            star.classList.toggle('fas');
+            lastRating = 3;
+          }
+
+          else {
+            star.classList.remove('fas');
+            star.classList.add('far');
+
+            lastRating = 2;
+          }
+
+          console.log(`current rating: ${lastRating}`);
   
-            stars[0].classList.remove('far');
-            stars[0].classList.add('fas');
+          stars[0].classList.remove('far');
+          stars[0].classList.add('fas');
   
-            stars[1].classList.remove('far');
-            stars[1].classList.add('fas');
+          stars[1].classList.remove('far');
+          stars[1].classList.add('fas');
   
-            stars[2].classList.remove('far');
-            stars[2].classList.add('fas');
+          stars[3].classList.add('far');
+          stars[3].classList.remove('fas');
   
-            stars[3].classList.remove('far');
-            stars[3].classList.add('fas');
-            break;
+          stars[4].classList.add('far');
+          stars[4].classList.remove('fas');
+          break;
+
+        case 3:
+          console.log(`last rating: ${lastRating}`);
+
+          if (lastRating < 4 || lastRating > 4) {
+            star.classList.add('fas');
+            star.classList.remove('far');
+
+            lastRating = 4;
+          }
+
+          else {
+            star.classList.remove('fas');
+            star.classList.add('far');
+
+            lastRating = 3;
+          }
+
+          console.log(`current rating: ${lastRating}`);
+  
+          stars[0].classList.remove('far');
+          stars[0].classList.add('fas');
+  
+          stars[1].classList.remove('far');
+          stars[1].classList.add('fas');
+  
+          stars[2].classList.remove('far');
+          stars[2].classList.add('fas');
+  
+          stars[4].classList.add('far');
+          stars[4].classList.remove('fas');
+          break;
+
+        case 4:
+          console.log(`last rating: ${lastRating}`);
+
+          if (lastRating < 5) {
+            star.classList.add('fas');
+            star.classList.remove('far');
+
+            lastRating = 5;
+          }
+
+          else {
+            star.classList.remove('fas');
+            star.classList.add('far');
+
+            lastRating = 4;
+          }
+
+          console.log(`current rating: ${lastRating}`);
+  
+          stars[0].classList.remove('far');
+          stars[0].classList.add('fas');
+  
+          stars[1].classList.remove('far');
+          stars[1].classList.add('fas');
+  
+          stars[2].classList.remove('far');
+          stars[2].classList.add('fas');
+  
+          stars[3].classList.remove('far');
+          stars[3].classList.add('fas');
+          break;
       }
-
-
+      book.rating = lastRating;
     });
   });
-
 }
 
 function setCardStyle(property) {
@@ -284,7 +449,7 @@ form.addEventListener(('submit'), (e) => {
 });
 
 const AGOT = new Book(
-  'A Game Of Thrones', 'George R.R. Martin', "Fantasy", 1996, 694, "read" );
+  'A Game Of Thrones', 'George R.R. Martin', "Fantasy", 1996, 694, "read", 4);
 
 addBookToLibrary(AGOT);
 displayBook(myLibrary[myLibrary.length - 1], myLibrary.length - 1);
