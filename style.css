@@ -57,6 +57,10 @@ header p {
   font-size: 3rem;
 }
 
+header .fa-book-reader {
+  margin-left: 2rem;
+}
+
 header button {
   padding: 1rem;
 }
@@ -116,7 +120,18 @@ main {
 }
 
 .placeholder {
-  outline: 0.1rem dashed lightgray;
+  border: 0.25rem dashed lightgray;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(247, 247, 247);
+}
+
+.placeholder i {
+  color: green;
+  font-size: 5rem;
+  cursor: pointer;
+  text-shadow: 0 0 0.2rem black;
 }
 
 .book-card-bg {
@@ -149,7 +164,7 @@ main {
   cursor: pointer;
 }
 
-i.fas {
+.star-rating i.fas {
   color: yellow;
 }
 
