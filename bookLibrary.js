@@ -399,10 +399,13 @@ function setCardStyle(property) {
 }
 
 const modal = document.querySelector('#js-modal');
-const formButton = document.querySelector('#js-form-button');
+const formButtons = document.querySelectorAll('.form-button');
 const backButton = document.querySelector('#js-back-button');
 
-formButton.addEventListener('click', showForm);
+formButtons.forEach(button => {
+  button.addEventListener('click', showForm);
+});
+
 backButton.addEventListener('click', hideForm);
 
 function showForm(e) {
@@ -453,4 +456,3 @@ const AGOT = new Book(
 
 addBookToLibrary(AGOT);
 displayBook(myLibrary[myLibrary.length - 1], myLibrary.length - 1);
-
