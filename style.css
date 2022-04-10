@@ -26,6 +26,10 @@ ul {
 
 button {
   cursor: pointer;
+  padding: 1rem;
+  width: 10rem;
+  border-color: rgb(202, 202, 202);
+  border-radius: 0.5rem;
 }
 
 .wrapper {
@@ -44,6 +48,7 @@ header {
   position: sticky;
   box-shadow: 0 0 0.5rem 0.1rem rgb(122, 122, 122);
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 2rem;
 }
@@ -51,6 +56,8 @@ header {
 header h1 {
   font-family: "Ultra", serif;
   font-size: 4rem;
+  color: #6292cc;
+  text-shadow: 0 4px 1px black;
 }
 
 header p {
@@ -61,8 +68,24 @@ header .fa-book-reader {
   margin-left: 2rem;
 }
 
+header .account-options {
+  gap: 1rem;
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+@media (max-width: 620px) {
+  header .account-options {
+    flex-direction: column;
+  }
+}
+
 header button {
   padding: 1rem;
+  width: 10rem;
+  border-color: rgb(202, 202, 202);
+  border-radius: 0.5rem;
 }
 
 main {
@@ -143,7 +166,6 @@ main {
   position: absolute;
   border-radius: 1rem;
   box-shadow: 0 0 0.1rem 0.8rem white;
-  background: linear-gradient(45deg, rgb(255, 255, 255) 30%, rgb(40, 80, 130) 30%, rgb(110, 140, 180));
   cursor: pointer;
 }
 @media (max-width: 620px) {
@@ -175,12 +197,10 @@ h2 {
 
 .book-horror {
   font-family: "Rubik Glitch", cursive;
-  background-color: red;
 }
 
 .book-comedy {
   font-family: "Grape Nuts", cursive;
-  background-color: lightblue;
 }
 
 .book-fantasy {
@@ -189,32 +209,26 @@ h2 {
 
 .book-romance {
   font-family: "Lobster", cursive;
-  background-color: darkmagenta;
 }
 
 .book-historical {
   font-family: "Teko", sans-serif;
-  background-color: darkgrey;
 }
 
 .book-biography {
   font-family: "Saira Condensed", sans-serif;
-  background-color: darkturquoise;
 }
 
 .book-science-fiction {
   font-family: "Rubik Moonrocks", cursive;
-  background-color: midnightblue;
 }
 
 .book-crime-mystery {
   font-family: "Rubik Wet Paint", cursive;
-  background-color: indianred;
 }
 
 .book-action-adventure {
   font-family: "Acme", sans-serif;
-  background-color: dodgerblue;
 }
 
 h2, h3, h4 {
@@ -232,7 +246,7 @@ h2, h3, h4, p, button, i {
 }
 
 h3, h4, p, button,
-input, label, legend {
+input, label, legend, option {
   font-size: 1.8rem;
   font-family: "Teko", sans-serif;
 }
@@ -263,11 +277,25 @@ dialog {
   margin: auto;
   position: absolute;
   padding: 2rem;
-  width: 90%;
+  width: 60%;
   height: 90%;
   max-width: 120rem;
-  max-height: 200rem;
+  max-height: 73rem;
   border-radius: 1rem;
+  border: none;
+  border: 0.2rem solid lightblue;
+  box-shadow: 0 0 0.5rem 0.1rem rgb(82, 69, 69);
+}
+@media (max-width: 1080px) {
+  dialog {
+    width: 90%;
+  }
+}
+
+dialog > button {
+  position: relative;
+  margin: 5rem 0 0 1rem;
+  bottom: 2rem;
 }
 
 form ul {
@@ -277,7 +305,7 @@ form ul {
 }
 
 form input {
-  padding: 1rem;
+  padding: 1.6rem;
 }
 
 form input[type=text],
@@ -288,16 +316,22 @@ form select {
 }
 
 form input[type=number] {
-  width: 8rem;
+  width: 10rem;
   height: 3rem;
   text-align: left;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
+  margin: 0;
 }
 
 form li {
   width: 100%;
   justify-self: start;
   display: grid;
-  align-items: center;
   grid-template-columns: 0.15fr 1fr;
 }
 
@@ -310,7 +344,12 @@ form .form-row-4 {
 .form-row-4 div {
   display: grid;
   align-items: center;
-  grid-template-columns: 0.15fr 1fr;
+  grid-template-columns: 0.1625fr 1fr;
+}
+@media (max-width: 880px) {
+  .form-row-4 div {
+    grid-template-columns: 0.19fr 1fr;
+  }
 }
 
 form li:nth-child(5) {
@@ -325,12 +364,22 @@ form li:nth-child(6) {
   gap: 1rem;
 }
 
+form li:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+form li:last-child button:first-child {
+  background-color: rgb(177, 235, 177);
+}
+
 form input[type=submit] {
   justify-self: center;
 }
 
 fieldset {
   padding: 2rem;
+  border: 0.1rem solid lightblue;
 }
 
 legend {
@@ -338,9 +387,16 @@ legend {
 }
 
 textarea {
-  width: 95%;
-  height: 15rem;
+  width: 50%;
+  height: 20rem;
+  max-height: 30rem;
+  justify-self: left;
   padding: 1rem;
   text-align: left;
   resize: vertical;
+}
+@media (max-width: 880px) {
+  textarea {
+    width: 95%;
+  }
 }/*# sourceMappingURL=style.css.map */
