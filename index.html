@@ -16,7 +16,10 @@
       <p>A place to rate your books <i class="fas fa-book-reader"></i></p>        
     </div>
 
-    <button id="js-form-button" class="form-button" type="menu">Add new book</button>
+    <div class="account-options">
+      <button id="js-form-button" class="form-button" type="menu">Add new book</button>
+      <button id="js-remove-all" class="remove-all-btn" type="menu">Remove all</button>      
+    </div>
   </header>
   
 
@@ -32,25 +35,25 @@
   <dialog class="modal" id="js-modal">
     <form action="" method="">
       <fieldset>
-        <legend>Add a new book</legend>
+        <legend>Add a new book <i class="fas fa-book" style="margin: 0 1rem;"></i></legend>
         <ul>
           <li>
             <label for="title">Title</label>
-            <input id="js-title" name="title" type="text" required>
+            <input id="js-title" name="title" type="text" required placeholder="e.g. A Game of Thrones">
           </li>
 
           <li>
             <label for="author">Author</label>
-            <input id="js-author" name="author" type="text" required>
+            <input id="js-author" name="author" type="text" required placeholder="e.g. George R.R. Martin">
           </li>
 
           <li>
             <label for="genre">Genre</label>
             <select id="js-select" name="genre">
-              <option value="">--Please select a genre--</option> -->
+              <option value="">Other</option> -->
               <option value="Horror">Horror</option>
               <option value="Comedy">Comedy</option>
-              <option value="Fantasy">Fantasy</option>
+              <option value="Fantasy" selected>Fantasy</option>
               <option value="Romance">Romance</option>
               <option value="Historical">Historical</option>
               <option value="Biography">Biography</option>
@@ -63,7 +66,7 @@
           <li class="form-row-4">
             <div>
               <label for="year">Year</label>
-              <input id="js-year" type="number" name="year">
+              <input id="js-year" type="number" min="0" max="2099" step="1" placeholder="e.g. 2022"  name="year">
             </div>
             <div>
               <label for="pages">Pages</label>
@@ -73,9 +76,7 @@
 
           <li>
             <label for="blurb">Description</label>
-            <textarea id="js-blurb" name="blurb">
-
-            </textarea>
+            <textarea id="js-blurb" name="blurb"></textarea>
           </li>
 
           <li>
@@ -90,12 +91,13 @@
 
           <li>
             <button type="submit">Add</button>
+            <button id="js-back-button" class="back-button">Back</button>
           </li>
         </ul>
       </fieldset>
     </form>
 
-    <button id="js-back-button" class="back-button">Back</button>
+  
   </dialog>
 
 
