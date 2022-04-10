@@ -41,8 +41,6 @@ function addBookToLibrary(...objects) {
   }
 }
 
-// function removeBook() 
-
 const mainContainer = document.querySelector('main');
 
 function displayBook(book, index) {
@@ -70,8 +68,12 @@ function displayBook(book, index) {
   
   bookYear.textContent = book.year;
   bookPages.textContent = book.pages;
-  bookRead.textContent = book.read;
+  bookRead.textContent = 'read';
   bookRemove.textContent = 'remove';
+
+  bookCard.appendChild(interior);
+
+  interior.style.background = `linear-gradient(45deg, rgb(255, 255, 255) 30%, ${setBackground(book.genre)} 30%, rgb(110, 140, 180))`;
 
   bookCard.appendChild(bookTitle);
   bookCard.appendChild(bookAuthor);
@@ -94,7 +96,7 @@ function displayBook(book, index) {
   bookCard.appendChild(bookYear);
   bookCard.appendChild(bookPages);
 
-  // read ?
+  // read status
   const statusIcon = document.createElement('i');
   statusIcon.classList.add('far');
 
@@ -113,18 +115,16 @@ function displayBook(book, index) {
 
   bookCard.appendChild(readStatus);
   bookCard.appendChild(bookRemove);
-
-  //mainContainer.appendChild(bookCard);
   
   const firstNode = document.querySelector('.placeholder');
   mainContainer.insertBefore(bookCard, firstNode);
-  bookCard.appendChild(interior);
 
-  bookCard.classList.add(setCardStyle(book.genre));
+  bookCard.classList.add(setFontStyle(book.genre));
   interior.classList.add('book-card-bg');
 
   // readStatus listener
   statusIcon.addEventListener('click', () => {
+
     statusIcon.classList.toggle('fa-check-square');
     statusIcon.classList.toggle('fa-sticky-note');
 
@@ -143,231 +143,89 @@ function displayBook(book, index) {
     myLibrary.splice(index, index+1);
   });
 
+  // rating nodelist
   const stars = document.querySelectorAll(`.set_${index}`);
 
-  initRating(book, stars, book.rating);
-
+  setRating(stars, book.rating);
+  updateRating(book, stars, book.rating);
 }
 
-function initRating(book, stars, lastRating) {
+function setBackground(string) {
+  switch(string) {
+    case 'Horror':
+      return 'rgb(130, 40, 40)';
+
+    case 'Comedy':
+      return 'rgb(130, 40, 111)';
+       
+    case 'Fantasy':
+      return 'rgb(40, 80, 130)'; 
+      
+    case 'Romance':
+      return 'rgb(40, 42, 130)';
+      
+    case 'Historical':
+      return 'rgb(130, 73, 40)';
+
+    case 'Biography':
+      return 'rgb(72, 40, 130)'; 
+      
+    case 'Sci-Fi':
+      return 'rgb(40, 130, 123)';
+
+    case 'Crime-Mystery':
+      return 'rgb(40, 109, 130)';
+    
+    case 'Action-Adventure':
+      return 'rgb(163, 89, 89)';
+    
+    default:
+      return 'rgb(40, 80, 130)';
+  }
+}
+
+function setRating(array, number) {
+
+  for(let i = 0; i < number; i++) {
+
+    array[i].classList.remove('far');
+    array[i].classList.add('fas');
+  }
+}
+
+function resetRating(array) {
+
+  for(let i = 0; i < array.length; i++) {
+
+    array[i].classList.add('far');
+    array[i].classList.remove('fas'); 
+
+  }
+}
+
+function updateRating(book, stars, lastRating) {
   stars.forEach((star, index) => {
 
-    switch(lastRating) {
-      case 1:
-        stars[0].classList.remove('far');
-        stars[0].classList.add('fas');
-        break;
+    star.addEventListener('click', () => {
+      book.rating = index+1;
 
-      case 2:
-        stars[0].classList.remove('far');
-        stars[0].classList.add('fas');
-        stars[1].classList.remove('far');
-        stars[1].classList.add('fas');
-        break;
+      resetRating(stars);
+      setRating(stars, book.rating);
 
-      case 3:
-        stars[0].classList.remove('far');
-        stars[0].classList.add('fas');
-        stars[1].classList.remove('far');
-        stars[1].classList.add('fas');
-        stars[2].classList.remove('far');
-        stars[2].classList.add('fas');
-        break;
+      if (lastRating === book.rating) {
+        star.classList.toggle('far');
+        star.classList.toggle('fas');
 
-      case 4:
-        stars[0].classList.remove('far');
-        stars[0].classList.add('fas');
-        stars[1].classList.remove('far');
-        stars[1].classList.add('fas');
-        stars[2].classList.remove('far');
-        stars[2].classList.add('fas');
-        stars[3].classList.remove('far');
-        stars[3].classList.add('fas');
-        break;
-
-      case 5:
-        stars[0].classList.remove('far');
-        stars[0].classList.add('fas');
-        stars[1].classList.remove('far');
-        stars[1].classList.add('fas');
-        stars[2].classList.remove('far');
-        stars[2].classList.add('fas');
-        stars[3].classList.remove('far');
-        stars[3].classList.add('fas');
-        stars[4].classList.remove('far');
-        stars[4].classList.add('fas');
-        break;
-    }
-
-    star.addEventListener('click', (e) => {
-
-      switch(index) {
-        case 0:
-          console.log(`last rating: ${lastRating}`);
-
-          if (lastRating !== 1) {
-            star.classList.add('fas');
-            star.classList.remove('far');
-
-            lastRating = 1;
-          }
-
-          else {
-            star.classList.remove('fas');
-            star.classList.add('far');
-
-            lastRating = 0;
-          }
-
-          console.log(`current rating: ${lastRating}`);
-
-          stars[1].classList.add('far');
-          stars[1].classList.remove('fas');
-
-          stars[2].classList.add('far');
-          stars[2].classList.remove('fas');
-
-          stars[3].classList.add('far');
-          stars[3].classList.remove('fas');
-
-          stars[4].classList.add('far');
-          stars[4].classList.remove('fas');
-          break;
-
-        case 1:
-          console.log(`last rating: ${lastRating}`);
-
-          if (lastRating < 2 || lastRating > 2) {
-            star.classList.add('fas');
-            star.classList.remove('far');
-
-            lastRating = 2;
-          }
-
-          else {
-            star.classList.remove('fas');
-            star.classList.add('far');
-
-            lastRating = 1;
-          }
-
-          console.log(`current rating: ${lastRating}`);
-
-          stars[0].classList.remove('far');
-          stars[0].classList.add('fas');
-
-          stars[2].classList.add('far');
-          stars[2].classList.remove('fas');
-
-          stars[3].classList.add('far');
-          stars[3].classList.remove('fas');
-
-          stars[4].classList.add('far');
-          stars[4].classList.remove('fas');
-          break;
-
-        case 2:
-          console.log(`last rating: ${lastRating}`);
-
-          if (lastRating < 3 || lastRating > 3) {
-            star.classList.add('fas');
-            star.classList.remove('far');
-
-            lastRating = 3;
-          }
-
-          else {
-            star.classList.remove('fas');
-            star.classList.add('far');
-
-            lastRating = 2;
-          }
-
-          console.log(`current rating: ${lastRating}`);
-  
-          stars[0].classList.remove('far');
-          stars[0].classList.add('fas');
-  
-          stars[1].classList.remove('far');
-          stars[1].classList.add('fas');
-  
-          stars[3].classList.add('far');
-          stars[3].classList.remove('fas');
-  
-          stars[4].classList.add('far');
-          stars[4].classList.remove('fas');
-          break;
-
-        case 3:
-          console.log(`last rating: ${lastRating}`);
-
-          if (lastRating < 4 || lastRating > 4) {
-            star.classList.add('fas');
-            star.classList.remove('far');
-
-            lastRating = 4;
-          }
-
-          else {
-            star.classList.remove('fas');
-            star.classList.add('far');
-
-            lastRating = 3;
-          }
-
-          console.log(`current rating: ${lastRating}`);
-  
-          stars[0].classList.remove('far');
-          stars[0].classList.add('fas');
-  
-          stars[1].classList.remove('far');
-          stars[1].classList.add('fas');
-  
-          stars[2].classList.remove('far');
-          stars[2].classList.add('fas');
-  
-          stars[4].classList.add('far');
-          stars[4].classList.remove('fas');
-          break;
-
-        case 4:
-          console.log(`last rating: ${lastRating}`);
-
-          if (lastRating < 5) {
-            star.classList.add('fas');
-            star.classList.remove('far');
-
-            lastRating = 5;
-          }
-
-          else {
-            star.classList.remove('fas');
-            star.classList.add('far');
-
-            lastRating = 4;
-          }
-
-          console.log(`current rating: ${lastRating}`);
-  
-          stars[0].classList.remove('far');
-          stars[0].classList.add('fas');
-  
-          stars[1].classList.remove('far');
-          stars[1].classList.add('fas');
-  
-          stars[2].classList.remove('far');
-          stars[2].classList.add('fas');
-  
-          stars[3].classList.remove('far');
-          stars[3].classList.add('fas');
-          break;
+        book.rating -=1;
       }
-      book.rating = lastRating;
+
+      lastRating = book.rating;
+      // console.log(book.rating);
     });
   });
 }
 
-function setCardStyle(property) {
+function setFontStyle(property) {
   switch(property) {
     case 'Horror':
       return 'book-horror';
@@ -456,3 +314,21 @@ const AGOT = new Book(
 
 addBookToLibrary(AGOT);
 displayBook(myLibrary[myLibrary.length - 1], myLibrary.length - 1);
+
+const removeAll = document.getElementById('js-remove-all');
+
+removeAll.addEventListener('click', () => {
+  const cards = document.querySelectorAll('.books-card');  
+
+  if (myLibrary.length > 0) {
+
+    console.log(cards)
+    cards.forEach((card, index) => {
+
+      myLibrary.splice(index, index+1);
+      mainContainer.removeChild(card);
+
+    });
+
+  }
+});
