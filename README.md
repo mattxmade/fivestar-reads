@@ -5,8 +5,9 @@
 <p>This project is built using HTML CSS/Sass and JavaScript.</p>
 <p>The aim for this project is to improve my skills using JavaScript Objects, Prototypes and better understand their concepts.</p>
 
+<strong>Features implemented using JavaScript:</strong>
 <ul>
-  <strong>Features implemented using JavaScript:</strong>
+  
   <li>Form feature to add custom books</li>
   <li>Form validation to prevent duplicate titles</li>
   <li>Interactivity: Add/Remove books from library</li>
