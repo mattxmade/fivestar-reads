@@ -430,6 +430,12 @@ dialog {
     width: 90%;
   }
 }
+@media (max-width: 620px) {
+  dialog {
+    max-height: 70vh;
+    margin: 2rem auto auto;
+  }
+}
 
 dialog > button {
   bottom: 2rem;
@@ -546,6 +552,6 @@ textarea {
 }
 @media (max-width: 620px) {
   textarea {
-    height: 10rem;
+    height: 5rem;
   }
 }/*# sourceMappingURL=style.css.map */
