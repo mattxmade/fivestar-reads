@@ -17,4 +17,4 @@
 </ul>
 
 <br>
-<p><strong>Live: </strong><a href="https://mattxmade.github.io/odin-library/">Library app</a></p>
+<p><strong>Live: </strong><a href="https://mattxmade.github.io/odin-library/">5 Star Reads</a></p>
