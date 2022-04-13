@@ -11,23 +11,23 @@
 <body>
 
   <header>
-    <div>
-      <h1>Rated Reads</h1>
-      <p>A place to rate your books <i class="fas fa-book-reader"></i></p>        
+    <div class="branding">
+      <h1>5 <i class="fas fa-star"></i> Reads</h1>
+      <p>A place to rate your books.</i></p>        
     </div>
 
     <div class="account-options">
-      <button id="js-form-button" class="form-button" type="menu">Add new book</button>
-      <button id="js-remove-all" class="remove-all-btn" type="menu">Remove all</button>      
+      <button id="js-form-button" class="form-button" type="menu">NEW BOOK</button>
+      <button id="js-remove-all" class="remove-all-btn" type="menu">REMOVE ALL</button>      
     </div>
   </header>
   
 
   <div class="wrapper">
     <main>
-      <div class="placeholder">
+      <!-- <div class="placeholder">
         <i class="fas fa-plus-circle form-button"></i>
-      </div>
+      </div> -->
       
     </main>
   </div>
@@ -39,12 +39,12 @@
         <ul>
           <li>
             <label for="title">Title</label>
-            <input id="js-title" name="title" type="text" required placeholder="e.g. A Game of Thrones">
+            <input id="js-title" name="title" type="text" placeholder="e.g. A Game of Thrones">
           </li>
 
           <li>
             <label for="author">Author</label>
-            <input id="js-author" name="author" type="text" required placeholder="e.g. George R.R. Martin">
+            <input id="js-author" name="author" type="text" placeholder="e.g. George R.R. Martin">
           </li>
 
           <li>
@@ -55,7 +55,7 @@
               <option value="Comedy">Comedy</option>
               <option value="Fantasy" selected>Fantasy</option>
               <option value="Romance">Romance</option>
-              <option value="Historical">Historical</option>
+              <option value="Educational">Educational</option>
               <option value="Biography">Biography</option>
               <option value="Sci-Fi">Science-Fiction</option>
               <option value="Crime-Mystery">Crime & Mystery</option>
@@ -79,7 +79,7 @@
             <textarea id="js-blurb" name="blurb"></textarea>
           </li>
 
-          <li>
+          <li class="read-status">
             <p>Have you read this book?</p>
             
             <label for="status">Yes</label>
@@ -91,7 +91,7 @@
 
           <li>
             <button type="submit">Add</button>
-            <button id="js-back-button" class="back-button">Back</button>
+            <button type="button" id="js-back-button" class="back-button">Back</button>
           </li>
         </ul>
       </fieldset>
