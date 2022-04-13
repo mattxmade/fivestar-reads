@@ -175,7 +175,11 @@ function createCard(book, index) {
         if (bookCard.classList.contains('is-flipped')) {
           child.classList.add('hidden');
         }
-        else { child.classList.remove('hidden'); }
+        else { 
+          setTimeout(() => {
+            child.classList.remove('hidden'); 
+          }, 300); 
+        }
         
       });
     });  
