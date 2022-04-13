@@ -29,7 +29,6 @@ function createCard(book, index) {
   const interior = document.createElement('div');
   const bookCard = document.createElement('div');
   bookCard.classList.add('books-card');
-  bookCard.id = index;
 
   const bookTitle  = document.createElement('h2');
   const bookAuthor = document.createElement('h3');
@@ -45,25 +44,22 @@ function createCard(book, index) {
 
   const bookRemove = document.createElement('button');
 
-  // card__face card__face--front
-  // Front
-  const cardFront = document.createElement('div');
-  cardFront.classList.add('card__book--front');
-
+  // Card Back
   const cardBack  = document.createElement('div');
   cardBack.classList.add('card__book--back');
 
+  // Card Back --- Content
   const bookBlurb  = document.createElement('p');
   bookBlurb.textContent = book.blurb;
   cardBack.appendChild(bookBlurb);
-  //
 
+  // Card Front
+  const cardFront = document.createElement('div');
+  cardFront.classList.add('card__book--front');
+
+  // Card Front -- Content
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
-
-  if (book.genre === '') {
-    book.genre = 'other';
-  }
   bookGenre.textContent = book.genre;
   
   bookYear.textContent = book.year;
@@ -71,16 +67,18 @@ function createCard(book, index) {
   bookRead.textContent = 'read';
   bookRemove.textContent = 'remove';
 
+  // Card Style by Genre
   const background = setBackground(book.genre);
-
   interior.style.background = `linear-gradient(45deg, rgb(255, 255, 255) 30%, ${background} 30%, rgb(75, 75, 75))`;
   cardBack.style.background = `linear-gradient(45deg, ${background} 30%, rgb(75, 75, 75))`;
   cardFront.appendChild(interior);
 
+  // Append elements
   cardFront.appendChild(bookTitle);
   cardFront.appendChild(bookAuthor);
   cardFront.appendChild(bookGenre);
 
+  // Set-up rating system
   const ratingHolder = document.createElement('div');
   ratingHolder.classList.add('star-rating');
 
@@ -94,7 +92,6 @@ function createCard(book, index) {
   }
 
   cardFront.appendChild(ratingHolder);
-
   cardFront.appendChild(bookYear);
   cardFront.appendChild(bookPages);
 
@@ -102,12 +99,9 @@ function createCard(book, index) {
   const statusIcon = document.createElement('i');
   statusIcon.classList.add('far');
 
-  if (book.read === 'read') {
-    statusIcon.classList.add('fa-check-square');
-  }
-  else {
-    statusIcon.classList.add('fa-sticky-note');
-  }
+  book.read === 'read' 
+  ? statusIcon.classList.add('fa-check-square')
+  : statusIcon.classList.add('fa-sticky-note');
   
   // read status container
   const readStatus = document.createElement('div');
@@ -121,14 +115,13 @@ function createCard(book, index) {
   cardFront.appendChild(bookIcon);
   cardBack.appendChild(bookIcon.cloneNode(true));
   
-  // Front + Back
   // Front
   bookCard.appendChild(cardFront);
 
   // Back
   bookCard.appendChild(cardBack);
-  //
 
+  // Add Card to Parent
   const firstNode = document.querySelector('.placeholder');
   mainContainer.insertBefore(bookCard, firstNode);
 
@@ -151,11 +144,16 @@ function createCard(book, index) {
   });
 
   // remove button listener
-  bookRemove.addEventListener('click', (e) => {
+  bookRemove.addEventListener('click', () => {
 
-    mainContainer.removeChild(bookCard);
+    myLibrary.filter((item, index) => {
+      if (item.title === bookTitle.textContent) {
+        myLibrary.splice(index, 1);
+        console.log(`${bookTitle.textContent} has been removed.`);
+        mainContainer.removeChild(bookCard);
 
-    delete myLibrary[index];
+      }
+    });       
     console.table(myLibrary);
   });
 
@@ -332,6 +330,8 @@ form.addEventListener(('submit'), (e) => {
     const options = document.querySelector('select');
     for ( option of options.selectedOptions ) {
       selectGenre = option.attributes.value.nodeValue
+
+      if (selectGenre === '') selectGenre = 'Other';
     }
 
     const title  = inputs["title"].value;
