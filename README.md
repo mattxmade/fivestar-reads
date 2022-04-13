@@ -6,7 +6,7 @@
 <p>The aim for this project is to improve my skills using JavaScript Objects, Prototypes and better understand their concepts.</p>
 
 <br>
-<p><strong>Features implemented using JavaScript:</strong><p>
+<p><strong>Features implemented:</strong><p>
 <ul>
   <li>Form feature to add custom books</li>
   <li>Form validation to prevent duplicate titles</li>
