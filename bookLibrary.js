@@ -19,6 +19,7 @@ function Book(title, author, genre, year, pages, blurb, read, rating = 0) {
 function addBookToLibrary(...objects) {
   for(object of objects) {
     myLibrary.push(object);
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 }
 
@@ -140,6 +141,8 @@ function createCard(book, index) {
     else {
       book.read = 'unread';
     }
+    myLibrary[index].read = book.read;
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
     console.log(`${book.title} status: ${book.read}`);
   });
 
@@ -148,10 +151,13 @@ function createCard(book, index) {
 
     myLibrary.filter((item, index) => {
       if (item.title === bookTitle.textContent) {
-        myLibrary.splice(index, 1);
-        console.log(`${bookTitle.textContent} has been removed.`);
-        mainContainer.removeChild(bookCard);
 
+        myLibrary.splice(index, 1);
+        localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+
+        console.log(`${bookTitle.textContent} has been removed.`);
+
+        mainContainer.removeChild(bookCard);
       }
     });       
     console.table(myLibrary);
@@ -161,7 +167,7 @@ function createCard(book, index) {
   const stars = document.querySelectorAll(`.set_${index}`);
 
   setRating(stars, book.rating);
-  updateRating(book, stars, book.rating);
+  updateRating(book, stars, book.rating, index);
 
   const icons = document.querySelectorAll(`.icon-set_${index}`);
   
@@ -207,7 +213,7 @@ function resetRating(array) {
   }
 }
 
-function updateRating(book, stars, lastRating) {
+function updateRating(book, stars, lastRating, arrayIndex) {
   stars.forEach((star, index) => {
 
     star.addEventListener('click', () => {
@@ -224,6 +230,10 @@ function updateRating(book, stars, lastRating) {
       }
 
       lastRating = book.rating;
+
+      myLibrary[arrayIndex].rating = lastRating;
+      localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+
       console.log(`${book.title} rating: ${book.rating}`);
     });
   });
@@ -376,55 +386,64 @@ removeAll.addEventListener('click', () => {
 
       mainContainer.removeChild(card);
       myLibrary = [];
+      localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
     });
   }
 });
 
-// Data
-const AGOT = new Book(
-  'A Game of Thrones', 'George R.R. Martin', "Fantasy", 1996, 694, 
-  "Amid plots and counterplots, tragedy and betrayal, victory and terror, the fate of the Starks, their allies, and their enemies hangs perilously in the balance, as each endeavors to win that deadliest of conflicts: the game of thrones.",
-  "read", 5);
+const libraryFromLocalStorage = localStorage.getItem('myLibrary')
+if (libraryFromLocalStorage && libraryFromLocalStorage.length) {
+  myLibrary = JSON.parse(libraryFromLocalStorage);
+}
 
-const DRAC = new Book(
-  'Dracula', 'Bram Stoker', "Horror", 1897, 418, 
-  "Dracula is a classic and genre-defining tale of horror from famed author Bram Stoker. This novel contains the chilling tales of those that encountered the monster Dracula on his quest to emigrate from Transylvania to England, as he seeks to consume blood and spread his undead curse to the innocent.", 
-  "read", 4);
+else {
+  // Data
+  const AGOT = new Book(
+    'A Game of Thrones', 'George R.R. Martin', "Fantasy", 1996, 694, 
+    "Amid plots and counterplots, tragedy and betrayal, victory and terror, the fate of the Starks, their allies, and their enemies hangs perilously in the balance, as each endeavors to win that deadliest of conflicts: the game of thrones.",
+    "read", 5);
 
-const DUNE = new Book(
-  'Dune', 'Frank Herbert', "Sci-Fi", 1965, 412, 
-  "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, heir to a noble family tasked with ruling an inhospitable world where the only thing of value is the “spice” melange, a drug capable of extending life and enhancing consciousness.", 
-  "read", 4);
+  const DRAC = new Book(
+    'Dracula', 'Bram Stoker', "Horror", 1897, 418, 
+    "Dracula is a classic and genre-defining tale of horror from famed author Bram Stoker. This novel contains the chilling tales of those that encountered the monster Dracula on his quest to emigrate from Transylvania to England, as he seeks to consume blood and spread his undead curse to the innocent.", 
+    "read", 4);
 
-
-const ADWD = new Book(
-  'A Dance with Dragons', 'George R.R. Martin', "Fantasy", 2011, 761,
-  "From all corners, bitter conflicts reignite, intimate betrayals are perpetrated, and a grand cast of outlaws and priests, soldiers and skinchangers, nobles and slaves, will face seemingly insurmountable obstacles. Some will fail, others will grow in the strength of darkness.",
-  "unread", 0);
-  
-const OLDR = new Book(
-  'Outlander', 'Diana Gabaldon', "Fantasy", 1991, 850,
-  "The year is 1945. Claire Randall, a former combat nurse, is just back from the war and reunited with her husband on a second honeymoon when she walks through a standing stone in one of the ancient circles that dot the British Isles. Suddenly she is a Sassenach—an “outlander”.",
-  "read", 3);
-
-const PRAP = new Book(
-  'Pride & Prejudice', 'Jane Austen', "Romance", 1813, 761,
-  "Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.",
-  "unread", 0);
-
-const DKJS = new Book(
-  'Have a Nice Day: A Tale of Blood and Sweatsocks', 'Mick Foley', "Biography", 1999, 554,
-  "Mick Foley is a nice man, a family man who loves amusement parks and eating ice cream in bed. Here is an intimate glimpse into Mick Foley's mind, his history, his work and what some might call his pathology.",
-  "read", 4);
-
-const MDLA = new Book(
-  'Nelson Mandela', 'Martin Meredith', "Educational", 1997, 653,
-  "The riveting memoirs of the outstanding moral and political leader of our time, A Long Walk to Freedom brilliantly re-creates the drama of the experiences that helped shape Nelson Mandela's destiny.",
-  "read", 5);
+  const DUNE = new Book(
+    'Dune', 'Frank Herbert', "Sci-Fi", 1965, 412, 
+    "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, heir to a noble family tasked with ruling an inhospitable world where the only thing of value is the “spice” melange, a drug capable of extending life and enhancing consciousness.", 
+    "read", 4);
 
 
-addBookToLibrary(AGOT, DRAC, DUNE, ADWD, OLDR, PRAP, DKJS, MDLA);
+  const ADWD = new Book(
+    'A Dance with Dragons', 'George R.R. Martin', "Fantasy", 2011, 761,
+    "From all corners, bitter conflicts reignite, intimate betrayals are perpetrated, and a grand cast of outlaws and priests, soldiers and skinchangers, nobles and slaves, will face seemingly insurmountable obstacles. Some will fail, others will grow in the strength of darkness.",
+    "unread", 0);
+    
+  const OLDR = new Book(
+    'Outlander', 'Diana Gabaldon', "Fantasy", 1991, 850,
+    "The year is 1945. Claire Randall, a former combat nurse, is just back from the war and reunited with her husband on a second honeymoon when she walks through a standing stone in one of the ancient circles that dot the British Isles. Suddenly she is a Sassenach—an “outlander”.",
+    "read", 3);
+
+  const PRAP = new Book(
+    'Pride & Prejudice', 'Jane Austen', "Romance", 1813, 761,
+    "Pride and Prejudice follows the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner. They must overcome the titular sins of pride and prejudice in order to fall in love and marry.",
+    "unread", 0);
+
+  const DKJS = new Book(
+    'Have a Nice Day: A Tale of Blood and Sweatsocks', 'Mick Foley', "Biography", 1999, 554,
+    "Mick Foley is a nice man, a family man who loves amusement parks and eating ice cream in bed. Here is an intimate glimpse into Mick Foley's mind, his history, his work and what some might call his pathology.",
+    "read", 4);
+
+  const MDLA = new Book(
+    'Nelson Mandela', 'Martin Meredith', "Educational", 1997, 653,
+    "The riveting memoirs of the outstanding moral and political leader of our time, A Long Walk to Freedom brilliantly re-creates the drama of the experiences that helped shape Nelson Mandela's destiny.",
+    "read", 5);
+
+
+  addBookToLibrary(AGOT, DRAC, DUNE, ADWD, OLDR, PRAP, DKJS, MDLA);
+}
 
 myLibrary.forEach((book, index) => {
   createCard(book, index);
 });
+
