@@ -14,6 +14,7 @@
   <li>Interactivity: 5 star rating system</li>
   <li>Interactivity: Ability to change read status</li>
   <li>Interactivity: Cards can be flipped over to show book description</li>
+  <li>Persistence: localStorage used to store user books</li>
 </ul>
 
 <br>
