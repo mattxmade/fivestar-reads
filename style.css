@@ -453,7 +453,7 @@ dialog .form-alert {
   margin: auto auto 0;
   border-radius: 0.5rem;
   color: transparent;
-  outline: transparent;
+  border: transparent;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -481,14 +481,14 @@ dialog .form-alert {
 
 dialog .form-alert-error {
   color: rgb(255, 255, 255);
-  outline: 0.2rem solid rgb(255, 0, 0);
+  border: 0.2rem solid rgb(255, 0, 0);
   background-color: rgb(66, 65, 68);
   visibility: visible;
 }
 
 dialog .form-alert-success {
   color: rgb(177, 235, 177);
-  outline: 0.2rem solid rgb(177, 235, 177);
+  border: 0.2rem solid rgb(177, 235, 177);
   background-color: rgb(66, 65, 68);
   visibility: visible;
 }
