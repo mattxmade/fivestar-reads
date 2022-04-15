@@ -69,6 +69,24 @@ header .branding {
   display: grid;
   align-items: center;
 }
+@media (max-width: 880px) {
+  header .branding {
+    display: flex;
+    align-items: baseline;
+  }
+  header .branding p {
+    margin-left: 2rem;
+  }
+}
+@media (max-width: 620px) {
+  header .branding {
+    display: initial;
+    align-items: center;
+  }
+  header .branding p {
+    margin: 0;
+  }
+}
 
 header h1 {
   font-size: 4rem;
@@ -81,7 +99,7 @@ header h1 i {
   color: yellow;
   text-shadow: 0 0.15rem 0.5rem black;
 }
-@media (max-width: 620px) {
+@media (max-width: 880px) {
   header h1 {
     font-size: 3rem;
   }
@@ -90,7 +108,7 @@ header h1 i {
 header p {
   font-size: 3rem;
 }
-@media (max-width: 620px) {
+@media (max-width: 880px) {
   header p {
     font-size: 2rem;
   }
@@ -99,7 +117,7 @@ header p {
 header .fa-book-reader {
   margin-left: 2rem;
 }
-@media (max-width: 620px) {
+@media (max-width: 880px) {
   header .fa-book-reader {
     margin-left: 0.5rem;
   }
@@ -112,13 +130,18 @@ header .account-options {
   width: -moz-max-content;
   width: max-content;
 }
+@media (max-width: 880px) {
+  header .account-options {
+    flex-direction: row;
+  }
+}
 @media (max-width: 620px) {
   header .account-options {
     flex-direction: column;
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 880px) {
   header button {
     width: 8rem;
     padding: 0.3rem;
@@ -151,19 +174,6 @@ main {
 /*============
   Book Card
 ==============*/
-.placeholder {
-  padding: 2rem;
-  max-width: 25rem;
-  min-height: 35rem;
-  position: relative;
-  border-radius: 2rem;
-}
-@media (max-width: 1080px) {
-  .placeholder {
-    max-width: 100%;
-  }
-}
-
 .books-card {
   display: flex;
   align-items: center;
@@ -419,7 +429,7 @@ dialog {
 @media (max-width: 620px) {
   dialog {
     position: fixed;
-    max-height: 70vh;
+    max-height: 92vh;
     margin: 2rem auto auto;
   }
 }
@@ -430,6 +440,9 @@ dialog > button {
   margin: 5rem 0 0 1rem;
 }
 
+/*============
+  Form Alert
+==============*/
 dialog .form-alert {
   width: 50%;
   height: 4.25rem;
@@ -452,7 +465,7 @@ dialog .form-alert {
   dialog .form-alert {
     inset: 0;
     width: 94%;
-    bottom: 10rem;
+    bottom: 0;
   }
 }
 @media (max-width: 880px) {
@@ -554,6 +567,26 @@ form li:nth-child(5) {
   }
 }
 
+textarea {
+  width: 50%;
+  height: 20rem;
+  padding: 1rem;
+  text-align: left;
+  resize: none;
+  max-height: 30rem;
+  justify-self: left;
+}
+@media (max-width: 880px) {
+  textarea {
+    width: 95%;
+  }
+}
+@media (max-width: 620px) {
+  textarea {
+    height: 10rem;
+  }
+}
+
 /*=============
   Read Status
 ===============*/
@@ -582,24 +615,4 @@ form li:last-child button:first-child {
 
 form input[type=submit] {
   justify-self: center;
-}
-
-textarea {
-  width: 50%;
-  height: 20rem;
-  padding: 1rem;
-  text-align: left;
-  resize: none;
-  max-height: 30rem;
-  justify-self: left;
-}
-@media (max-width: 880px) {
-  textarea {
-    width: 95%;
-  }
-}
-@media (max-width: 620px) {
-  textarea {
-    height: 10rem;
-  }
 }/*# sourceMappingURL=style.css.map */
