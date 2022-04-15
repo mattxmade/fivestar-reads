@@ -519,7 +519,6 @@ form input[type=text],
 form select {
   width: 75%;
   height: 3rem;
-  margin-left: 1rem;
 }
 
 form input[type=number] {
@@ -535,11 +534,16 @@ input::-webkit-inner-spin-button {
           appearance: none;
 }
 
-form li {
+form li,
+.form-row-4 div {
   width: 100%;
-  display: grid;
+  display: flex;
   justify-self: start;
-  grid-template-columns: 0.15fr 1fr;
+  justify-content: left;
+}
+
+form li label {
+  width: 8rem;
 }
 
 form .form-row-4 {
@@ -548,24 +552,12 @@ form .form-row-4 {
   grid-template-columns: 1fr;
 }
 
-.form-row-4 div {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 0.1625fr 1fr;
-}
-@media (max-width: 880px) {
-  .form-row-4 div {
-    grid-template-columns: 0.19fr 1fr;
-  }
-}
-
 /*======
   Blurb
 ========*/
 form li:nth-child(5) {
   display: flex;
   justify-self: start;
-  gap: 1rem;
   flex-direction: row;
   align-items: center;
 }
@@ -580,10 +572,18 @@ form li:nth-child(5) {
 ===============*/
 form li:nth-child(6) {
   gap: 1rem;
-  display: flex;
-  justify-self: start;
+  align-items: center;
 }
 
+form li:nth-child(6) label {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+/*==============
+  Form Buttons
+================*/
 form li:last-child {
   display: flex;
   justify-content: space-between;
@@ -605,17 +605,10 @@ textarea {
   resize: none;
   max-height: 30rem;
   justify-self: left;
-  margin-left: 2.4rem;
-}
-@media (max-width: 1080px) {
-  textarea {
-    margin-left: 4.5rem;
-  }
 }
 @media (max-width: 880px) {
   textarea {
     width: 95%;
-    margin-left: 0.4rem;
   }
 }
 @media (max-width: 620px) {
