@@ -443,6 +443,56 @@ dialog > button {
   margin: 5rem 0 0 1rem;
 }
 
+dialog .form-alert {
+  width: 50%;
+  height: 4.25rem;
+  inset: 0;
+  z-index: 3;
+  bottom: 4.25rem;
+  position: absolute;
+  margin: auto auto 0;
+  border-radius: 0.5rem;
+  color: transparent;
+  outline: transparent;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  transition: 0.3s;
+}
+@media (max-width: 1080px) {
+  dialog .form-alert {
+    inset: 0;
+    width: 94%;
+    bottom: 10rem;
+  }
+}
+@media (max-width: 880px) {
+  dialog .form-alert {
+    width: 90%;
+  }
+}
+@media (max-width: 620px) {
+  dialog .form-alert {
+    width: 85%;
+  }
+}
+
+dialog .form-alert-error {
+  color: rgb(255, 255, 255);
+  outline: 0.2rem solid rgb(255, 0, 0);
+  background-color: rgb(66, 65, 68);
+  visibility: visible;
+}
+
+dialog .form-alert-success {
+  color: rgb(177, 235, 177);
+  outline: 0.2rem solid rgb(177, 235, 177);
+  background-color: rgb(66, 65, 68);
+  visibility: visible;
+}
+
 /*=======
   Form
 =========*/
@@ -541,13 +591,15 @@ textarea {
   height: 20rem;
   padding: 1rem;
   text-align: left;
-  resize: vertical;
+  resize: none;
   max-height: 30rem;
   justify-self: left;
+  margin-left: 3.5rem;
 }
 @media (max-width: 880px) {
   textarea {
     width: 95%;
+    margin-left: 1.2rem;
   }
 }
 @media (max-width: 620px) {
