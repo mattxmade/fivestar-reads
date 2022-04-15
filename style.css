@@ -496,6 +496,15 @@ dialog .form-alert-success {
 /*=======
   Form
 =========*/
+fieldset {
+  padding: 2rem;
+  border: 0.1rem solid lightblue;
+}
+
+legend {
+  padding: 0 1rem;
+}
+
 form ul {
   gap: 2rem;
   display: flex;
@@ -550,6 +559,9 @@ form .form-row-4 {
   }
 }
 
+/*======
+  Blurb
+========*/
 form li:nth-child(5) {
   display: flex;
   justify-self: start;
@@ -557,7 +569,15 @@ form li:nth-child(5) {
   flex-direction: row;
   align-items: center;
 }
+@media (max-width: 620px) {
+  form li:nth-child(5) {
+    flex-direction: column;
+  }
+}
 
+/*=============
+  Read Status
+===============*/
 form li:nth-child(6) {
   gap: 1rem;
   display: flex;
@@ -577,15 +597,6 @@ form input[type=submit] {
   justify-self: center;
 }
 
-fieldset {
-  padding: 2rem;
-  border: 0.1rem solid lightblue;
-}
-
-legend {
-  padding: 0 1rem;
-}
-
 textarea {
   width: 50%;
   height: 20rem;
@@ -594,16 +605,21 @@ textarea {
   resize: none;
   max-height: 30rem;
   justify-self: left;
-  margin-left: 3.5rem;
+  margin-left: 2.4rem;
+}
+@media (max-width: 1080px) {
+  textarea {
+    margin-left: 4.5rem;
+  }
 }
 @media (max-width: 880px) {
   textarea {
     width: 95%;
-    margin-left: 1.2rem;
+    margin-left: 0.4rem;
   }
 }
 @media (max-width: 620px) {
   textarea {
-    height: 5rem;
+    height: 10rem;
   }
 }/*# sourceMappingURL=style.css.map */
