@@ -326,6 +326,10 @@ function hideForm(e) {
 const form = document.querySelector('form');
 const inputs = form.elements;
 
+// form message alert
+const alertContainer = document.getElementById('js-form-alert');
+const alertMessage = document.getElementById('js-form-alert-message');
+
 form.addEventListener(('submit'), (e) => {
   e.preventDefault();
 
@@ -334,9 +338,36 @@ form.addEventListener(('submit'), (e) => {
 
   myLibrary.forEach(item => {
     if (String(item.title).toLowerCase() === String(inputs["title"].value).toLowerCase()) {
+      
+      alertMessage.textContent = 'Book title already added';
+      
+      alertContainer.classList.remove('form-alert-success');
+      alertContainer.classList.add('form-alert-error');
+
+      setTimeout(() => {
+        alertContainer.classList.remove('form-alert-error');
+      }, 3000); 
+      
       exists = true;
     }
-  })
+  });
+
+  for(input of inputs) {
+
+    if (input.nodeName === 'INPUT' && String(input.value).trim() === "") {
+
+      alertMessage.textContent = 'Please complete all fields';
+
+      alertContainer.classList.remove('form-alert-success');
+      alertContainer.classList.add('form-alert-error');
+
+      setTimeout(() => {
+        alertContainer.classList.remove('form-alert-error');
+      }, 3000); 
+
+      exists = true;
+    }
+  }
 
   if (!exists) {
     let selectGenre;
@@ -367,6 +398,14 @@ form.addEventListener(('submit'), (e) => {
     console.table(myLibrary);
 
     createCard(myLibrary[myLibrary.length - 1], myLibrary.length - 1);
+
+    alertMessage.textContent = 'Book successfully added!';
+    alertContainer.classList.remove('form-alert-error');
+    alertContainer.classList.add('form-alert-success');
+
+    setTimeout(() => {
+      alertContainer.classList.remove('form-alert-success');
+    }, 3000); 
   }
 
 });
