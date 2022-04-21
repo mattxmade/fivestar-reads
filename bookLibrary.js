@@ -5,6 +5,11 @@ const Library = ( () => {
 
   const placeholder = document.querySelector('.placeholder');
 
+  const removeAll = document.getElementById('js-remove-all');
+  removeAll.addEventListener('click', () => {
+    _removeAll();
+  });  
+
   const _checkStorage = () => {
     let restore = true;
 
@@ -419,10 +424,6 @@ const Library = ( () => {
 
     bookExists: (title) => {
       return _checkExists(title);
-    },
-
-    removeAll: () => {
-      _removeAll();
     }
   }
 
@@ -520,9 +521,4 @@ form.addEventListener(('submit'), (e) => {
     alertContainer.classList.remove('form-alert-success');
   }, 3000); 
 
-});
-
-const removeAll = document.getElementById('js-remove-all');
-removeAll.addEventListener('click', () => {
-  Library.removeAll();
 });
