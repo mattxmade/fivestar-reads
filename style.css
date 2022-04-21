@@ -496,13 +496,15 @@ dialog ::-webkit-scrollbar {
   dialog {
     width: 90%;
     height: 100vh;
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
   }
 }
 @media (max-width: 620px) {
   dialog {
-    height: -webkit-max-content;
-    height: -moz-max-content;
-    height: max-content;
+    position: fixed;
+    height: 92vh;
     margin: 2rem auto auto;
   }
 }
