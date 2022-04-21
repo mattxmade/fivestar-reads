@@ -106,16 +106,23 @@ const Library = ( () => {
     const bookRemove = document.createElement('button');
 
     // Card Back
-    const cardBack  = document.createElement('div');
+    const cardBack   = document.createElement('div');
     cardBack.classList.add('card__book--back');
 
     // Card Back --- Content
+    const backTitle  = document.createElement('h5');
+    backTitle.textContent = book.title;
+    backTitle.style.color = 'white';
+    backTitle.style.fontSize = '1.6rem';
+    backTitle.style.textAlign = 'center';
+    cardBack.appendChild(backTitle);
+
     const bookBlurb  = document.createElement('p');
     bookBlurb.textContent = book.blurb;
     cardBack.appendChild(bookBlurb);
 
     // Card Front
-    const cardFront = document.createElement('div');
+    const cardFront  = document.createElement('div');
     cardFront.classList.add('card__book--front');
 
     // Card Front -- Content
