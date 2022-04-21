@@ -502,9 +502,9 @@ dialog {
 @media (max-width: 620px) {
   dialog {
     position: fixed;
-    max-height: -webkit-fit-content;
-    max-height: -moz-fit-content;
-    max-height: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     margin: 2rem auto auto;
   }
 }
