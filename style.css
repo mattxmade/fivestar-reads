@@ -498,10 +498,11 @@ dialog ::-webkit-scrollbar {
     width: 90%;
     position: -webkit-sticky;
     position: sticky;
+    max-height: 100vh;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     margin: 2rem auto auto;
-    max-height: -webkit-fit-content;
-    max-height: -moz-fit-content;
-    max-height: fit-content;
   }
 }
 @media (max-width: 620px) {
