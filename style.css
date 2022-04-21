@@ -508,9 +508,9 @@ dialog ::-webkit-scrollbar {
   dialog {
     top: 0;
     position: fixed;
-    max-height: -webkit-fit-content;
-    max-height: -moz-fit-content;
-    max-height: fit-content;
+    max-height: -webkit-max-content;
+    max-height: -moz-max-content;
+    max-height: max-content;
   }
 }
 
@@ -521,17 +521,13 @@ dialog > button {
 }
 
 dialog .fa-times-circle {
-  position: fixed;
-  right: 21%;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
   cursor: pointer;
   font-size: 2.5rem;
   border-radius: 100%;
   background-color: white;
-}
-@media (max-width: 1080px) {
-  dialog .fa-times-circle {
-    right: 7%;
-  }
 }
 
 /*============
