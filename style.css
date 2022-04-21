@@ -484,7 +484,7 @@ dialog {
   height: max-content;
   max-width: 120rem;
   max-height: 73rem;
-  overflow: auto;
+  overflow: visible;
   border: none;
   border-radius: 1rem;
   border: 0.2rem solid lightblue;
@@ -516,8 +516,8 @@ dialog > button {
 }
 
 dialog .fa-times-circle {
-  top: 1.5rem;
-  right: 1rem;
+  top: -1.5rem;
+  right: -1rem;
   position: absolute;
   cursor: pointer;
   font-size: 2.5rem;
