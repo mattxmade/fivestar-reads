@@ -509,9 +509,6 @@ dialog ::-webkit-scrollbar {
     top: 0;
     position: fixed;
     max-height: 92vh;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
   }
 }
 
