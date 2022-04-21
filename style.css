@@ -484,6 +484,7 @@ dialog {
   height: max-content;
   max-width: 120rem;
   max-height: 73rem;
+  overflow: auto;
   border: none;
   border-radius: 1rem;
   border: 0.2rem solid lightblue;
