@@ -515,7 +515,7 @@ dialog > button {
 }
 
 dialog .fa-times-circle {
-  top: rem;
+  top: 1.5rem;
   right: 1rem;
   position: absolute;
   cursor: pointer;
