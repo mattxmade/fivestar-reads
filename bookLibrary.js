@@ -1,4 +1,6 @@
 const Library = ( () => {
+  'use strict';
+
   let bookList = [];
   const mainContainer = document.querySelector('main');
   const libraryFromLocalStorage = localStorage.getItem('bookList');
@@ -75,7 +77,7 @@ const Library = ( () => {
   // private object data methods
   const _addBookToLibrary = (...objects) => {
 
-    for(object of objects) {
+    for(const object of objects) {
 
       bookList.push(object);
       localStorage.setItem('bookList', JSON.stringify(bookList));
