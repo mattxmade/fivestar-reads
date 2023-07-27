@@ -16,7 +16,14 @@ html {
 body {
   font-size: 1.6rem;
   background-color: rgba(228, 214, 214, 0.2);
-  background: linear-gradient(45deg, whitesmoke, rgba(208, 205, 255, 0.2), whitesmoke, rgba(208, 205, 255, 0.2), whitesmoke);
+  background: linear-gradient(
+    45deg,
+    whitesmoke,
+    rgba(208, 205, 255, 0.2),
+    whitesmoke,
+    rgba(208, 205, 255, 0.2),
+    whitesmoke
+  );
 }
 
 ul {
@@ -53,10 +60,9 @@ button:nth-child(2) {
 ==========*/
 header {
   width: 100%;
-  padding: 2rem;
+  padding: 0 2rem;
   top: 0;
   z-index: 3;
-  position: -webkit-sticky;
   position: sticky;
   display: flex;
   align-items: center;
@@ -89,7 +95,7 @@ header .branding {
 }
 
 header h1 {
-  font-size: 4rem;
+  font-size: 2.5rem;
   color: black;
   font-weight: normal;
   font-family: "Pacifico", cursive;
@@ -99,14 +105,9 @@ header h1 i {
   color: yellow;
   text-shadow: 0 0.15rem 0.5rem black;
 }
-@media (max-width: 880px) {
-  header h1 {
-    font-size: 3rem;
-  }
-}
 
 header p {
-  font-size: 3rem;
+  font-size: 1.8rem;
 }
 @media (max-width: 880px) {
   header p {
@@ -117,7 +118,6 @@ header p {
 header .account-options {
   gap: 1rem;
   display: flex;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
 }
@@ -209,7 +209,13 @@ main {
   width: 25rem;
   height: 35rem;
   border: 0.2rem dashed rgb(255, 255, 255);
-  background: linear-gradient(45deg, rgba(64, 74, 141, 0.1), rgba(77, 89, 170, 0.1), rgba(64, 74, 141, 0.1), rgba(77, 89, 170, 0.1));
+  background: linear-gradient(
+    45deg,
+    rgba(64, 74, 141, 0.1),
+    rgba(77, 89, 170, 0.1),
+    rgba(64, 74, 141, 0.1),
+    rgba(77, 89, 170, 0.1)
+  );
 }
 
 .dissolve-placeholder i {
@@ -234,7 +240,6 @@ main {
   padding: 0.5rem;
   justify-self: end;
   border-radius: 0.5rem;
-  max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
   box-shadow: 0 0 0.1rem 0.1rem rgb(212, 198, 198);
@@ -253,7 +258,7 @@ main {
 }
 @media (max-width: 1080px) {
   .card__book--front,
-.card__book--back {
+  .card__book--back {
     max-width: 100%;
   }
 }
@@ -378,7 +383,9 @@ h2 {
   text-overflow: ellipsis;
 }
 
-h2, h3, h4 {
+h2,
+h3,
+h4 {
   color: white;
   text-shadow: 0 0.15rem 0.1rem black;
 }
@@ -387,7 +394,12 @@ h4 {
   color: aqua;
 }
 
-h2, h3, h4, p, button, i {
+h2,
+h3,
+h4,
+p,
+button,
+i {
   z-index: 2;
   position: relative;
   transition: 0.3s;
@@ -396,13 +408,18 @@ h2, h3, h4, p, button, i {
 .hidden {
   visibility: hidden;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
-h3, h4, p, button,
-input, label, legend, option {
+h3,
+h4,
+p,
+button,
+input,
+label,
+legend,
+option {
   font-size: 1.8rem;
   font-family: "Teko", sans-serif;
 }
@@ -479,7 +496,6 @@ dialog {
   position: fixed;
   padding: 2rem;
   width: 60%;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   max-width: 120rem;
@@ -496,10 +512,8 @@ dialog ::-webkit-scrollbar {
   dialog {
     top: auto;
     width: 90%;
-    position: -webkit-sticky;
     position: sticky;
     max-height: 100vh;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     margin: 2rem auto auto;
@@ -510,7 +524,6 @@ dialog ::-webkit-scrollbar {
     top: 0;
     position: fixed;
     max-height: 92vh;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -607,13 +620,13 @@ form input {
   padding: 1.6rem;
 }
 
-form input[type=text],
+form input[type="text"],
 form select {
   width: 75%;
   height: 3rem;
 }
 
-form input[type=number] {
+form input[type="number"] {
   width: 10rem;
   height: 3rem;
   text-align: left;
@@ -623,7 +636,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   margin: 0;
   -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
 }
 
 form li,
@@ -688,7 +701,6 @@ form li:nth-child(6) {
 }
 
 form li:nth-child(6) label {
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
 }
@@ -705,6 +717,6 @@ form li:last-child button:first-child {
   background-color: rgb(177, 235, 177);
 }
 
-form input[type=submit] {
+form input[type="submit"] {
   justify-self: center;
-}/*# sourceMappingURL=style.css.map */
+}
