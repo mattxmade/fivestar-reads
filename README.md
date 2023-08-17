@@ -1,5 +1,5 @@
 <a href="#"><img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="javascript-badge"/></a>
-# <a href="#"><img src="staricon_48x48.ico" width="24"/></a> 5 Star Reads | <a href="https://mattxmade.github.io/odin-library/" target="_blank"> <strong>Live</strong></a>
+# <a href="#"><img src="favicon.ico" width="24"/></a> 5 Star Reads | <a href="https://mattxmade.github.io/odin-library/" target="_blank"> <strong>Live</strong></a>
 
 > ### A reading list and book rating web application
 
