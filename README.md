@@ -1,5 +1,5 @@
 <a href="#"><img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="javascript-badge"/></a>
-# <a href="#"><img src="favicon.ico" width="24"/></a> 5 Star Reads | <a href="https://mattxmade.github.io/fivestar-reads/" target="_blank"> <strong>Live</strong></a>
+# <a href="#"><img src="favicon.ico" width="24"/></a> 5 Star Reads | <a href="https://mattxmade.github.io/fivestarreads/" target="_blank"> <strong>Live</strong></a>
 
 > ### A reading list and book rating web application
 
@@ -19,7 +19,7 @@
 <p><strong>Application to create, view, update and delete book titles</strong></p>
 
 <p>This project is built using HTML CSS/Sass and JavaScript.</p>
-<p>The aim for this project is to improve my skills using JavaScript Objects, Prototypes and better understand their concepts.</p>
+<p>The aim for this project is to improve my understanding of JavaScript Objects and improve my DOM manipulation skills.</p>
 
 <br>
 <p><strong>Features implemented:</strong><p>
